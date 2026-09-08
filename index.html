@@ -21,21 +21,38 @@ header{text-align:center;padding:18px 10px 26px}.logo{width:82px;height:82px;bor
 .confirm{text-align:center;padding:15px 4px}.check{width:62px;height:62px;border-radius:50%;background:#f4ead1;color:#8b6a2b;display:grid;place-items:center;font-size:28px;margin:0 auto 16px}.success{font-size:14px;line-height:1.9;color:#666}.footer{text-align:center;color:#999;font-size:12px;padding:18px}
 @media(max-width:380px){.times{grid-template-columns:repeat(2,1fr)}.dates{grid-template-columns:repeat(2,1fr)}}
 .logo{
-  width:170px;
+  width:210px;
   height:auto;
   display:block;
-  margin:0 auto 12px;
-  border-radius:0;
+  margin:0 auto 8px;
   object-fit:contain;
-  filter:drop-shadow(0 5px 8px rgba(0,0,0,.25));
+  border-radius:0;
+  filter:drop-shadow(0 8px 10px rgba(0,0,0,.28));
 }
 
-</style>
-</head>
-<body>
-<div class="app"><main class="shell">
-<header><img class="logo" src="clinic-logo.png.PNG" alt="Dr Salah Clinic"><div class="brand">Dr Salah Clinic</div><div class="sub">حجز موعد بسهولة وراحة 🤍</div></header>
+.doctor-name{
+  text-align:center;
+  margin:0 auto 8px;
+  line-height:1;
+  font-family:Georgia,serif;
+  font-weight:700;
+  text-shadow:1px 1px 0 #caa85e,2px 2px 3px rgba(0,0,0,.25);
+}
 
+.doctor-name span{
+  display:inline;
+  color:#171717;
+  font-size:34px;
+  letter-spacing:1px;
+}
+
+.doctor-name small{
+  display:block;
+  margin-top:6px;
+  color:#caa85e;
+  font-size:16px;
+  letter-spacing:3px;
+}
 <div class="step active" data-step="1"><h1>مرحبًا بك 🤍</h1><p class="hint">اختاري سبب الزيارة، والطبيب يحدد التشخيص والعلاج المناسب بعد الفحص.</p><div class="options" id="reasonOptions">
 <button class="option" data-value="فحص وتشخيص"><strong>🔍 فحص وتشخيص</strong><span>لمعرفة المشكلة أو سبب الألم</span></button>
 <button class="option" data-value="مراجعة"><strong>🩺 مراجعة</strong><span>متابعة أو مراجعة علاج سابق</span></button>
