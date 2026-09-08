@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr Salah Clinic | حجز موعد</title>
+<style>
+:root{--gold:#caa85e;--ink:#171717;--muted:#777;--cream:#faf8f3;--line:#e9e3d7}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif}
+.app{min-height:100vh;display:flex;justify-content:center;padding:22px 16px}.shell{width:100%;max-width:520px}
+header{text-align:center;padding:18px 10px 26px}.logo{width:82px;height:82px;border-radius:50%;object-fit:cover;background:#050505;margin:auto;display:block}.brand{font-family:Georgia,serif;font-size:27px;margin:13px 0 3px}.sub{color:var(--muted);font-size:13px}
+.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:0 10px 35px rgba(30,25,15,.05)}
+.progress{display:flex;gap:7px;margin-bottom:24px}.bar{height:4px;flex:1;background:#eee8dc;border-radius:10px}.bar.on{background:var(--gold)}
+.step{display:none}.step.active{display:block}h1{font-size:25px;margin:0 0 8px}.hint{color:var(--muted);font-size:14px;line-height:1.7;margin:0 0 20px}
+.options{display:grid;gap:10px}.option{width:100%;border:1px solid var(--line);background:#fff;border-radius:15px;padding:15px;text-align:right;font-size:15px;cursor:pointer}.option.selected{border-color:var(--gold);background:#fffaf0}.option strong{display:block;margin-bottom:3px}.option span{font-size:12px;color:var(--muted)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{margin-bottom:14px}.field label{display:block;font-size:13px;font-weight:600;margin-bottom:7px}.field input,.field textarea{width:100%;border:1px solid var(--line);border-radius:13px;padding:13px;font:inherit;background:#fff;outline:none}.field input:focus,.field textarea:focus{border-color:var(--gold)}
+.dates{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px}.date,.time{border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px 6px;text-align:center;cursor:pointer;font:inherit}.date small{display:block;color:var(--muted);font-size:11px}.date b{display:block;font-size:17px;margin-top:3px}.date.selected{background:#171717;color:#fff;border-color:#171717}.date.selected small{color:#d7d7d7}
+.times{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.time.selected{background:var(--gold);border-color:var(--gold);color:#fff}.time.disabled{color:#bbb;background:#f5f5f5;cursor:not-allowed;text-decoration:line-through}
+.actions{display:flex;gap:9px;margin-top:22px}.btn{border:0;border-radius:14px;padding:14px 18px;font:inherit;font-weight:700;cursor:pointer}.primary{background:#171717;color:#fff;flex:1}.secondary{background:#f2eee6;color:#333}
+.summary{background:#faf8f3;border-radius:16px;padding:15px;text-align:right;margin:18px 0}.summary div{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee7da;font-size:14px}.summary div:last-child{border:0}
+.confirm{text-align:center;padding:15px 4px}.check{width:62px;height:62px;border-radius:50%;background:#f4ead1;color:#8b6a2b;display:grid;place-items:center;font-size:28px;margin:0 auto 16px}.success{font-size:14px;line-height:1.9;color:#666}.footer{text-align:center;color:#999;font-size:12px;padding:18px}
+@media(max-width:380px){.times{grid-template-columns:repeat(2,1fr)}.dates{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="app"><main class="shell">
+<header><img class="logo" src="logo.jpeg" alt="Dr Salah Clinic"><div class="brand">Dr Salah Clinic</div><div class="sub">حجز موعد بسهولة وراحة 🤍</div></header>
+<section class="card">
+<div class="progress"><i class="bar on"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i></div>
+
+<div class="step active" data-step="1"><h1>مرحبًا بك 🤍</h1><p class="hint">اختاري سبب الزيارة، والطبيب يحدد التشخيص والعلاج المناسب بعد الفحص.</p><div class="options" id="reasonOptions">
+<button class="option" data-value="فحص وتشخيص"><strong>🔍 فحص وتشخيص</strong><span>لمعرفة المشكلة أو سبب الألم</span></button>
+<button class="option" data-value="مراجعة"><strong>🩺 مراجعة</strong><span>متابعة أو مراجعة علاج سابق</span></button>
+<button class="option" data-value="حشوة"><strong>🦷 حشوة</strong></button><button class="option" data-value="علاج عصب"><strong>🧠 علاج عصب</strong></button>
+<button class="option" data-value="تنظيف وتلميع"><strong>✨ تنظيف وتلميع</strong></button>
+<button class="option" data-value="تقويم الأسنان"><strong>😁 تقويم الأسنان</strong><span>نوع التقويم يحدده الطبيب بعد التقييم</span></button>
+<button class="option" data-value="زراعة الأسنان"><strong>🌱 زراعة الأسنان</strong></button><button class="option" data-value="خلع / ضرس عقل"><strong>🦷 خلع / ضرس عقل</strong></button>
+<button class="option" data-value="موعد لطفل"><strong>👶 موعد لطفل</strong></button><button class="option" data-value="تجميل الأسنان"><strong>✨ تجميل الأسنان</strong></button>
+<button class="option" data-value="أشعة / فحص إضافي"><strong>🩻 أشعة / فحص إضافي</strong></button><button class="option" data-value="أخرى"><strong>❔ أخرى</strong></button>
+</div></div>
+
+<div class="step" data-step="2"><h1>نوع المريض</h1><p class="hint">حتى نجهز الموعد بالطريقة المناسبة.</p><div class="options" id="patientType"><button class="option" data-value="مريض جديد"><strong>🆕 مريض جديد</strong><span>أول زيارة للعيادة</span></button><button class="option" data-value="مريض سابق"><strong>👤 مريض سابق</strong><span>لدي ملف لدى العيادة</span></button></div><div class="actions"><button class="btn secondary back">رجوع</button></div></div>
+
+<div class="step" data-step="3"><h1>اختاري التاريخ</h1><p class="hint">العيادة تستقبل المراجعين من السبت إلى الخميس، من 9:00 صباحًا حتى 8:00 مساءً.</p><div class="dates" id="dates"></div><div class="actions"><button class="btn secondary back">رجوع</button></div></div>
+
+<div class="step" data-step="4"><h1>اختاري الوقت</h1><p class="hint">الأوقات الظاهرة هنا هي الأوقات المتاحة للحجز.</p><div class="times" id="times"></div><div class="actions"><button class="btn secondary back">رجوع</button></div></div>
+
+<div class="step" data-step="5"><h1>بيانات الحجز</h1><p class="hint">بقيت خطوة أخيرة لتثبيت الموعد.</p><div class="field"><label>الاسم الكامل</label><input id="name" type="text" placeholder="اكتبي اسمك الكامل"></div><div class="field"><label>رقم الهاتف</label><input id="phone" type="tel" placeholder="07XXXXXXXX"></div><div class="field"><label>ملاحظات (اختياري)</label><textarea id="notes" rows="3" placeholder="مثلاً: لدي ألم في الجهة اليمنى"></textarea></div><div class="summary" id="summary"></div><div class="actions"><button class="btn secondary back">رجوع</button><button class="btn primary" id="confirm">تثبيت الحجز ✓</button></div></div>
+
+<div class="step" data-step="6"><div class="confirm"><div class="check">✓</div><h1>تم حجز موعدك بنجاح</h1><p class="success">شكرًا لاختيارك Dr Salah Clinic 🤍<br>نتمنى لك السلامة ودوام الصحة، وننتظرك في موعدك بكل سرور.</p><div class="summary" id="finalSummary"></div><button class="btn primary" id="newBooking">حجز موعد آخر</button></div></div>
+</section><div class="footer">Dr Salah Clinic · 0785929749</div>
+</main></div>
+<script>
+(()=>{const s={step:1,reason:"",patientType:"",date:"",time:""};const steps=[...document.querySelectorAll(".step")],bars=[...document.querySelectorAll(".bar")];
+const times=["09:00 AM","10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM","03:00 PM","04:00 PM","05:00 PM","06:00 PM","07:00 PM"],busy=["10:00 AM","02:00 PM","06:00 PM"];
+function go(n){s.step=n;steps.forEach(x=>x.classList.toggle("active",+x.dataset.step===n));bars.forEach((x,i)=>x.classList.toggle("on",i<n-1));if(n===5)summary();scrollTo({top:0,behavior:"smooth"})}
+document.querySelectorAll("#reasonOptions .option").forEach(b=>b.onclick=()=>{document.querySelectorAll("#reasonOptions .option").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");s.reason=b.dataset.value;go(2)});
+document.querySelectorAll("#patientType .option").forEach(b=>b.onclick=()=>{document.querySelectorAll("#patientType .option").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");s.patientType=b.dataset.value;dates();go(3)});
+document.querySelectorAll(".back").forEach(b=>b.onclick=()=>go(Math.max(1,s.step-1)));
+function dates(){const el=document.getElementById("dates");el.innerHTML="";let d=new Date(),n=0,names=["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];while(n<6){d.setDate(d.getDate()+1);if(d.getDay()===5)continue;let b=document.createElement("button");b.className="date";b.innerHTML=`<small>${names[d.getDay()]}</small><b>${d.getDate()}/${d.getMonth()+1}</b>`;b.onclick=()=>{document.querySelectorAll(".date").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");s.date=b.textContent.trim().replace(/\s+/g," ");renderTimes();go(4)};el.appendChild(b);n++}}
+function renderTimes(){const el=document.getElementById("times");el.innerHTML="";times.forEach(t=>{let b=document.createElement("button");b.className="time";b.textContent=t;if(busy.includes(t)){b.classList.add("disabled");b.disabled=true}else b.onclick=()=>{document.querySelectorAll(".time").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");s.time=t;go(5)};el.appendChild(b)})}
+function summary(){document.getElementById("summary").innerHTML=`<div><span>سبب الزيارة</span><strong>${s.reason}</strong></div><div><span>نوع المريض</span><strong>${s.patientType}</strong></div><div><span>التاريخ</span><strong>${s.date}</strong></div><div><span>الوقت</span><strong>${s.time}</strong></div>`}
+document.getElementById("confirm").onclick=()=>{let name=document.getElementById("name").value.trim(),phone=document.getElementById("phone").value.trim();if(!name||!phone){alert("يرجى إدخال الاسم ورقم الهاتف لإتمام الحجز.");return}document.getElementById("finalSummary").innerHTML=`<div><span>الاسم</span><strong>${name}</strong></div><div><span>سبب الزيارة</span><strong>${s.reason}</strong></div><div><span>التاريخ</span><strong>${s.date}</strong></div><div><span>الوقت</span><strong>${s.time}</strong></div>`;go(6)};
+document.getElementById("newBooking").onclick=()=>location.reload()})()
+</script>
+</body>
+</html>
